@@ -6,11 +6,36 @@
     "header header header"
     "main main main"
     "footer footer footer";
-    grid-gap: 3rem 1rem;
-
+  grid-gap: 3rem 1rem;
   h1 {
     grid-area: header;
   }
+
+  .footer {
+    grid-area: footer;
+    display: grid;
+    grid-template-columns: 10rem minmax(max-content, 5rem) 1fr minmax(max-content, 5rem) 10rem;
+    grid-template-rows: auto;
+    grid-gap: 1rem;
+    align-items: center;
+    p {
+      grid-area: 1 / 3 / 2 / 4;
+    }
+    a {
+      grid-area: 1 / 4 / 2 / 5;
+
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      line-height: 1.6;
+      font-weight: 600;
+      &:hover {
+        text-decoration: none;
+        color: $black;
+       }
+    }
+  }
+
   p {
     grid-area: footer;
     font-size: 1rem;
@@ -22,7 +47,7 @@
   }
 }
 
-.grid {
+.grid-1 {
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 2;
