@@ -14,12 +14,13 @@
   .footer {
     grid-area: footer;
     display: grid;
-    grid-template-columns: 10rem minmax(max-content, 5rem) 1fr minmax(max-content, 5rem) 10rem;
+    grid-template-columns: 10rem minmax(max-content, 1fr) 3fr minmax(max-content, 1fr) 10rem;
     grid-template-rows: auto;
     grid-gap: 1rem;
     align-items: center;
     a {
       grid-area: 1 / 2 / 2 / 3;
+      justify-self: start;
 
       font-size: 0.9rem;
       text-transform: uppercase;
@@ -34,8 +35,10 @@
     }
     p {
       grid-area: 1 / 3 / 2 / 4;
+      font-size: 1rem;
       &+a {
         grid-area: 1 / 4 / 2 / 5;
+        justify-self: end;
       }
     }
   }
