@@ -1,58 +1,74 @@
-/*
---------------------------------------------------------------------------------
-Grid system based on three columns
---------------------------------------------------------------------------------
-*/
-.half, .third, .two-thirds {
-  float: left;
-  position: relative;
-  width: 100%;
+.major-grid {
+  display: grid;
+  grid-template-columns: 1rem auto 1rem;
+  grid-template-rows: 5rem auto auto;
+  grid-template-areas:
+    "header header header"
+    "main main main"
+    "footer footer footer";
+  grid-gap: 3rem 1rem;
+  h1 {
+    grid-area: header;
+  }
+
+  .footer {
+    grid-area: footer;
+    display: grid;
+    grid-template-columns: 1rem minmax(max-content, 1fr) 3fr minmax(max-content, 1fr) 1rem;
+    grid-template-rows: auto;
+    grid-gap: 1rem;
+    align-items: center;
+    a {
+      grid-area: 1 / 2 / 2 / 3;
+      justify-self: start;
+
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      line-height: 1.6;
+      font-weight: 600;
+      color: $dark;
+      &:hover {
+        text-decoration: none;
+        color: $black;
+      }
+    }
+    p {
+      grid-area: 1 / 3 / 2 / 4;
+      font-size: 1rem;
+      &+a {
+        grid-area: 1 / 4 / 2 / 5;
+        justify-self: end;
+      }
+    }
+    @include desktop {
+      grid-template-columns: 10rem minmax(max-content, 1fr) 3fr minmax(max-content, 1fr) 10rem;
+    }
+  }
+
+  p {
+    grid-area: footer;
+    font-size: 1rem;
+    line-height: 140%;
+  }
+
+  @include desktop {
+    grid-template-columns: 10rem auto 10rem;
+  }
 }
 
-.half {
-  @include tablet { width: 50%; }
+.item {
+  border: solid $dark 2px;
+  background-color: $red;
+  font-size: 1.2rem;
+  text-align: left;
+  padding: 0.5rem;
+  p {
+    color: rgba($white, 0.9);
+    font-weight: bold;
+    &+p {
+      color: rgba($white, 0.7);
+      font-weight: normal;
+    }
+  }
 }
-
-.third {
-  @include tablet { width: 33.333%; }
-}
-
-.two-thirds {
-  @include tablet { width: 66.666%; }
-}
-
-/*
---------------------------------------------------------------------------------
-CSS grid helpers
---------------------------------------------------------------------------------
-*/
-
-
-/*
---------------------------------------------------------------------------------
-Flex helpers
---------------------------------------------------------------------------------
-*/
-
-.flex { display: flex; }
-.wrap { flex-wrap: wrap;}
-
-.dir-row        { flex-direction: row; }
-.dir-column     { flex-direction: column; }
-
-.jus-center     { justify-content: center; }
-.jus-around     { justify-content: space-around; }
-.jus-between    { justify-content: space-between; }
-.jus-start      { justify-content: flex-start; }
-.jus-end        { justify-content: flex-end; }
-
-.al-center      { align-items: center; }
-.al-around      { align-items: space-around; }
-.al-between     { align-items: space-between; }
-.al-start       { align-items: flex-start; }
-.al-end         { align-items: flex-end; }
-
-
-.self-center    { align-self: center; }
-.self-start     { align-self: flex-start; }
-.self-end       { align-self: flex-end; }
